@@ -44,12 +44,12 @@ export function PostList() {
   return (
     <div className="container mx-auto px-4 py-6">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">Blog Posts</h1>
+        <h1 className="text-2xl font-bold">Req's Blog Posts</h1>
         <Link href="/posts/create">
           <Button>Create New Post</Button>
         </Link>
       </div>
-
+  
       {posts.length === 0 ? (
         <div className="text-center text-muted-foreground">
           No posts found. Create your first post!
@@ -57,14 +57,15 @@ export function PostList() {
       ) : (
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           {posts.map(post => (
-            <PostCard 
-              key={post.id} 
-              post={post} 
-              onDelete={handleDeletePost} 
-            />
+            <div key={post.id} className="h-full">
+              <PostCard 
+                post={post} 
+                onDelete={(e) => handleDeletePost(post.id)} 
+              />
+            </div>
           ))}
         </div>
       )}
     </div>
-  )
+  )  
 }
